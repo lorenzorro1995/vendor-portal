@@ -110,6 +110,96 @@
                     </table>
                 </div>
             </div>
+            <div class="mt-6 pt-6 border-t dark:border-gray-700">
+                <h3 class="font-semibold text-lg text-gray-800 dark:text-white mb-2">Financial Performance</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">This is the financial information submitted by the applicant.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-1 space-y-10 mt-10">
+                        <p class="font-medium text-gray-700 dark:text-gray-300">1) Year :</p>
+                        <p class="font-medium text-gray-700 dark:text-gray-300">2) Current Asset :</p>
+                        <p class="font-medium text-gray-700 dark:text-gray-300">3) Total Non-current Asset :</p>
+                    </div>
+
+                    <div class="md:col-span-1 space-y-4">
+                        <h4 class="font-semibold text-gray-800 dark:text-white">Current Year</h4>
+                        <div>
+                            <x-text-input type="text" class="w-full" :value="$user->vendorProfile?->current_financial_year" disabled />
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">RM</span>
+                            <x-text-input type="text" class="pl-10 w-full" :value="number_format($user->vendorProfile?->current_assets, 2)" disabled />
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">RM</span>
+                            <x-text-input type="text" class="pl-10 w-full" :value="number_format($user->vendorProfile?->current_non_current_assets, 2)" disabled />
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-1 space-y-4">
+                        <h4 class="font-semibold text-gray-800 dark:text-white">Previous Year</h4>
+                        <div>
+                            <x-text-input type="text" class="w-full" :value="$user->vendorProfile?->previous_financial_year" disabled />
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">RM</span>
+                            <x-text-input type="text" class="pl-10 w-full" :value="number_format($user->vendorProfile?->previous_assets, 2)" disabled />
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">RM</span>
+                            <x-text-input type="text" class="pl-10 w-full" :value="number_format($user->vendorProfile?->previous_non_current_assets, 2)" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Performance (Read-Only Version for show.blade.php) -->
+        <div class="mt-6 pt-6 border-t dark:border-gray-700">
+            <h3 class="font-semibold text-lg text-gray-800 dark:text-white mb-2">Financial Performance</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">This is the financial information submitted by the applicant.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-2">
+                <!-- Labels Column -->
+                <div class="md:col-span-1 space-y-4 flex flex-col justify-end">
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">1) Year :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">2) Current Asset :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">3) Total Non-current Asset :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">4) Total Asset :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">5) Total Current Liability :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">6) Total Non-current Liability :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">7) Total Liability :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">8) Total Equity :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">9) Retain Earning :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">10) Revenue :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">11) Cost of Sales :</p>
+                    <p class="font-medium text-gray-700 dark:text-gray-300 h-10 flex items-center">12) Gross Profit / Loss :</p>
+                </div>
+
+                <!-- Current Year Column -->
+                <div class="md:col-span-1 space-y-4">
+                    <h4 class="font-semibold text-gray-800 dark:text-white h-10 flex items-center">Current Year</h4>
+                    <div>
+                        <x-text-input type="text" class="h-10 w-full" :value="$user->vendorProfile?->current_financial_year" disabled />
+                    </div>
+                    @php $currentFields = ['current_assets', 'current_non_current_assets', 'current_total_assets', 'current_current_liabilities', 'current_non_current_liabilities', 'current_total_liabilities', 'current_total_equity', 'current_retained_earnings', 'current_revenue', 'current_cost_of_sales', 'current_gross_profit_loss']; @endphp
+                    @foreach($currentFields as $field)
+                    <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">RM</span><x-text-input type="text" class="h-10 pl-10 w-full" :value="number_format($user->vendorProfile?->{$field} ?? 0, 2)" disabled /></div>
+                    @endforeach
+                </div>
+
+                <!-- Previous Year Column -->
+                <div class="md:col-span-1 space-y-4">
+                    <h4 class="font-semibold text-gray-800 dark:text-white h-10 flex items-center">Previous Year</h4>
+                    <div>
+                        <x-text-input type="text" class="h-10 w-full" :value="$user->vendorProfile?->previous_financial_year" disabled />
+                    </div>
+                    @php $previousFields = ['previous_assets', 'previous_non_current_assets', 'previous_total_assets', 'previous_current_liabilities', 'previous_non_current_liabilities', 'previous_total_liabilities', 'previous_total_equity', 'previous_retained_earnings', 'previous_revenue', 'previous_cost_of_sales', 'previous_gross_profit_loss']; @endphp
+                    @foreach($previousFields as $field)
+                    <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">RM</span><x-text-input type="text" class="h-10 pl-10 w-full" :value="number_format($user->vendorProfile?->{$field} ?? 0, 2)" disabled /></div>
+                    @endforeach
+                </div>
+            </div>
         </div>
 
         <div class="flex items-center justify-end mt-6 space-x-4 border-t border-gray-200 dark:border-gray-700 pt-6">

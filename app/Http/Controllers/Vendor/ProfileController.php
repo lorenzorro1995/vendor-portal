@@ -48,6 +48,34 @@ class ProfileController extends Controller
             'directors.*.locality' => ['required_with:directors', 'string', 'max:255'],
             'directors.*.ordinary_shares' => ['required_with:directors', 'integer', 'min:0'],
             'directors.*.preference_shares' => ['required_with:directors', 'integer', 'min:0'],
+            
+            // Current Year
+            'current_financial_year' => ['nullable', 'integer'],
+            'current_assets' => ['nullable', 'numeric', 'min:0'],
+            'current_non_current_assets' => ['nullable', 'numeric', 'min:0'],
+            'current_total_assets' => ['nullable', 'numeric', 'min:0'],
+            'current_current_liabilities' => ['nullable', 'numeric', 'min:0'],
+            'current_non_current_liabilities' => ['nullable', 'numeric', 'min:0'],
+            'current_total_liabilities' => ['nullable', 'numeric', 'min:0'],
+            'current_total_equity' => ['nullable', 'numeric', 'min:0'],
+            'current_retained_earnings' => ['nullable', 'numeric', 'min:0'],
+            'current_revenue' => ['nullable', 'numeric', 'min:0'],
+            'current_cost_of_sales' => ['nullable', 'numeric', 'min:0'],
+            'current_gross_profit_loss' => ['nullable', 'numeric', 'min:0'],
+
+            // Previous Year
+            'previous_financial_year' => ['nullable', 'integer'],
+            'previous_assets' => ['nullable', 'numeric', 'min:0'],
+            'previous_non_current_assets' => ['nullable', 'numeric', 'min:0'],
+            'previous_total_assets' => ['nullable', 'numeric', 'min:0'],
+            'previous_current_liabilities' => ['nullable', 'numeric', 'min:0'],
+            'previous_non_current_liabilities' => ['nullable', 'numeric', 'min:0'],
+            'previous_total_liabilities' => ['nullable', 'numeric', 'min:0'],
+            'previous_total_equity' => ['nullable', 'numeric', 'min:0'],
+            'previous_retained_earnings' => ['nullable', 'numeric', 'min:0'],
+            'previous_revenue' => ['nullable', 'numeric', 'min:0'],
+            'previous_cost_of_sales' => ['nullable', 'numeric', 'min:0'],
+            'previous_gross_profit_loss' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         // Create the VendorProfile and assign it to a variable

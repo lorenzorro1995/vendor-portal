@@ -79,6 +79,12 @@ class VendorController extends Controller
             'directors.*.locality' => ['required_with:directors', 'string', 'max:255'],
             'directors.*.ordinary_shares' => ['required_with:directors', 'integer', 'min:0'],
             'directors.*.preference_shares' => ['required_with:directors', 'integer', 'min:0'],
+            'current_financial_year' => ['nullable', 'integer'],
+            'current_assets' => ['nullable', 'numeric', 'min:0'],
+            'current_non_current_assets' => ['nullable', 'numeric', 'min:0'],
+            'previous_financial_year' => ['nullable', 'integer'],
+            'previous_assets' => ['nullable', 'numeric', 'min:0'],
+            'previous_non_current_assets' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         // Update User and VendorProfile
